@@ -1,6 +1,14 @@
-from pydantic import BaseModel
-from models import Incident
+from datetime import datetime
 import uuid
+
+from pydantic import BaseModel
+
+from models import Incident
+
+
+# ---------------------------------------
+# Category -> Department Mapping
+# ---------------------------------------
 
 CATEGORY_TO_DEPARTMENT = {
     "Water Leakage": "Civil Maintenance",
@@ -14,6 +22,10 @@ CATEGORY_TO_DEPARTMENT = {
     "Other": "General Maintenance"
 }
 
+# ---------------------------------------
+# Severity -> Priority Mapping
+# ---------------------------------------
+
 SEVERITY_PRIORITY = {
     "Low": "P4",
     "Medium": "P3",
@@ -21,48 +33,62 @@ SEVERITY_PRIORITY = {
     "Critical": "P1"
 }
 
-SLA = {
+# ---------------------------------------
+# Priority -> SLA Mapping
+# ---------------------------------------
+
+SLA_MAPPING = {
     "P1": "15 Minutes",
     "P2": "2 Hours",
     "P3": "8 Hours",
     "P4": "24 Hours"
 }
 
-ticket_id = f"INC-{str(uuid.uuid4())[:8].upper()}"
 
-
+# ---------------------------------------
+# Ticket Model
+# ---------------------------------------
 
 class Ticket(BaseModel):
-
     ticket_id: str
-
     location: str
-
     node_id: str
-
     category: str
-
     severity: str
 
     priority: str
-
     department: str
-
     sla: str
 
     status: str
-
     summary: str
 
+    created_at: str
 
 
-def generate_ticket(incident: Incident):
+# ---------------------------------------
+# Ticket Generator
+# ---------------------------------------
 
-    department = CATEGORY_TO_DEPARTMENT[incident.category]
+def generate_ticket(incident: Incident) -> Ticket:
+    """
+    Generates a maintenance ticket from an analyzed incident.
+    """
 
-    priority = SEVERITY_PRIORITY[incident.severity]
+    department = CATEGORY_TO_DEPARTMENT.get(
+        incident.category,
+        "General Maintenance"
+    )
 
-    sla = SLA[priority]
+    priority = SEVERITY_PRIORITY.get(
+        incident.severity,
+        "P4"
+    )
+
+    sla = SLA_MAPPING.get(
+        priority,
+        "24 Hours"
+    )
 
     ticket = Ticket(
         ticket_id=f"INC-{uuid.uuid4().hex[:8].upper()}",
@@ -74,7 +100,8 @@ def generate_ticket(incident: Incident):
         department=department,
         sla=sla,
         status="OPEN",
-        summary=incident.short_summary
+        summary=incident.short_summary,
+        created_at=datetime.utcnow().isoformat()
     )
 
     return ticket
