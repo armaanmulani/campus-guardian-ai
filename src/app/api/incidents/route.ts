@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { MOCK_INCIDENTS } from "@/lib/mock-data";
 
+import type { Incident } from "@/lib/types";
+
 // Simulated database (in-memory) for development
 let incidentsDB = [...MOCK_INCIDENTS];
 
@@ -26,19 +28,19 @@ export async function POST(request: Request) {
     }
 
     // In a real app, you would save to database here
-    const newIncident = {
-      id: `inc-${Date.now()}`,
-      title: body.title,
-      description: body.description,
-      category: body.category,
-      severity: "medium", // Default, reviewed by admin
-      lat: 23.0796, // Default to campus center if GPS is unavailable
-      lng: 76.8475,
-      location: body.location,
-      timestamp: new Date(),
-      status: "pending",
-      reportedBy: "student_anon", // Will link to session in future
-    };
+   const newIncident: Incident = {
+  id: `inc-${Date.now()}`,
+  title: body.title,
+  description: body.description,
+  category: body.category,
+  severity: "medium",
+  lat: 23.0796,
+  lng: 76.8475,
+  location: body.location,
+  timestamp: new Date(),
+  status: "pending",
+  reportedBy: "student_anon",
+};
 
     incidentsDB = [newIncident, ...incidentsDB];
 

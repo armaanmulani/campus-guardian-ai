@@ -22,15 +22,13 @@ interface RoutePanelProps {
 
 function SafetyBadge({ score }: { score: number }) {
   const color =
-    score >= 85 ? "text-green-600 bg-green-50 border-green-200" :
-    score >= 65 ? "text-orange-600 bg-orange-50 border-orange-200" :
-                  "text-red-600 bg-red-50 border-red-200";
-  const icon =
-    score >= 85 ? <CheckCircle className="w-3 h-3" /> :
-                  <AlertTriangle className="w-3 h-3" />;
+    score >= 85 ? "text-green-600  border-green-200" :
+    score >= 65 ? "text-orange-600  border-orange-200" :
+                  "text-red-600  border-red-200";
+
   return (
     <span className={`flex items-center gap-1 px-2 py-0.5 rounded-full border text-xs font-semibold ${color}`}>
-      {icon} {score}%
+      {score}%
     </span>
   );
 }
@@ -94,12 +92,12 @@ export default function RoutePanel({
   };
 
   return (
-    <aside className="w-80 flex flex-col bg-white border-r border-gray-200 z-10 shadow-sm overflow-hidden">
+    <aside className="w-80 flex flex-col bg-white border-r border-gray-400 z-10 shadow-sm overflow-hidden">
       {/* Panel header */}
       <div className="px-4 pt-4 pb-3 border-b border-gray-100">
         <div className="flex items-center gap-2 mb-3">
           <Navigation className="w-4 h-4 text-blue-600" />
-          <h2 className="text-2xl font-semibold text-gray-900">Safe Navigation</h2>
+          <h2 className="text-3xl font-semibold text-gray-900">Safe Navigation</h2>
         </div>
 
         {/* Origin input */}
@@ -160,7 +158,7 @@ export default function RoutePanel({
           >
             {t}
             {t === "incidents" && (
-              <span className="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-red-100 text-red-600 font-bold">
+              <span className="ml-1.5 px-1.5 py-0.5 rounded-2xl text-[10px] bg-red-100 text-red-600 font-bold">
                 {nearbyIncidents.length}
               </span>
             )}
@@ -180,7 +178,7 @@ export default function RoutePanel({
                   onClick={() => onRouteSelect(isActive ? null : route.id)}
                   className={`w-full text-left p-3.5 rounded-xl border transition-all ${
                     isActive
-                      ? "border-blue-300 bg-blue-50 shadow-sm"
+                      ? "border-gray-300 bg-gray-50 shadow-sm"
                       : "border-gray-100 hover:border-gray-200 hover:bg-gray-50"
                   }`}
                 >
@@ -208,7 +206,7 @@ export default function RoutePanel({
                   <div className="flex items-center gap-1 overflow-hidden">
                     {route.points.map((p, i) => (
                       <span key={i} className="flex items-center gap-1">
-                        <span className="text-xs text-gray-400 truncate max-w-14">{p.label}</span>
+                        <span className="text-xs text-gray-800 truncate max-w-14">{p.label}</span>
                         {i < route.points.length - 1 && (
                           <ChevronRight className="w-3 h-3 text-gray-300 flex-shrink-0" />
                         )}

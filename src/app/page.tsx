@@ -66,10 +66,10 @@ export default function HomePage() {
 
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-md bg-indigo-600 flex items-center justify-center">
-            <ShieldCheck className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
+            <ShieldCheck   className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 leading-none tracking-tight">
+            <h1 className="text-3xl font-bold text-slate-900 leading-none tracking-tight">
               Campus Guardian 
             </h1>
             <p className="text-[10px] font-mono font-medium text-slate-400 mt-1 uppercase tracking-[0.15em]">
@@ -139,7 +139,7 @@ export default function HomePage() {
           {/* Report incident */}
           <button
             onClick={() => setDrawerOpen(true)}
-            className="flex items-center gap-1.5 pl-3.5 pr-4 py-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-semibold rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2"
+            className="flex items-center gap-1.5 pl-3.5 pr-4 py-2 bg-red-600 border-black hover:bg-red-700 active:bg-red-800 text-white text-sm font-semibold rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2"
           >
             <Plus className="w-4 h-4" strokeWidth={2.5} />
             Report Incident
