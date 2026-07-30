@@ -1,0 +1,88 @@
+import json
+import networkx as nx
+import folium
+
+with open("nearest_nodes.json", "r") as f:
+    graph_data = json.load(f)
+
+nodes = [
+    {"id": "Main Gate", "lat": 23.08437180333786, "lng": 76.84958255896457},
+    {"id": "LC", "lat": 23.07866105006784, "lng": 76.85000128364705},
+    {"id": "AB01", "lat": 23.07773376380027, "lng": 76.85132029527581},
+    {"id": "Mayuri Cafeteria", "lat": 23.07715672051332, "lng": 76.85070273060833},
+    {"id": "UnderBelly", "lat": 23.07751030656562, "lng": 76.85065682141199},
+    {"id": "MPH", "lat": 23.07633177386586, "lng": 76.84969427997063},
+    {"id": "Morepen Clinic", "lat": 23.07598699352894, "lng": 76.84997719491298},
+    {"id": "Secondary Gate", "lat": 23.07554760432994, "lng": 76.84977720682981},
+    {"id": "surveillance Block", "lat": 23.0753340976069, "lng": 76.85002599697435},
+    {"id": "Bus Parking", "lat": 23.07440732700121, "lng": 76.85039534386119},
+    {"id": "Open Auditorium", "lat": 23.07426971867602, "lng": 76.85126934616248},
+    {"id": "Parcel Area", "lat": 23.07474564051778, "lng": 76.85008870542778},
+    {"id": "Chancellor's Residence", "lat": 23.0749285068796, "lng": 76.85131216893573},
+    {"id": "GH Block 1", "lat": 23.07535387290121, "lng": 76.85246235041245},
+    {"id": "GH Block 2", "lat": 23.07554657742942, "lng": 76.85384504731455},
+    {"id": "Special Block", "lat": 23.07256768836572, "lng": 76.85776425877727},
+    {"id": "BH Block 1", "lat": 23.07520652873168, "lng": 76.85993701475878},
+    {"id": "Mayuri Mess", "lat": 23.07356266066645, "lng": 76.8601762868573},
+    {"id": "BH Block 2", "lat": 23.0729790971609, "lng": 76.86018061253326},
+    {"id": "BH Block 3", "lat": 23.07335699597114, "lng": 76.85945144266478},
+    {"id": "Central Hostel Office", "lat": 23.07373414786334, "lng": 76.85935341672754},
+    {"id": "BH Block 5", "lat": 23.07359347569372, "lng": 76.85881394086834},
+    {"id": "BH Block 4", "lat": 23.07302217789222, "lng": 76.85873344791915},
+    {"id": "BH Block 6", "lat": 23.07237458159758, "lng": 76.86001906061951},
+    {"id": "BH Block 7", "lat": 23.07281673198376, "lng": 76.85958517357138},
+    {"id": "BH Block 8", "lat": 23.07249406588741, "lng": 76.85878948912135},
+    {"id": "Safal Mess", "lat": 23.0723920284192, "lng": 76.85958088637626},
+    {"id": "AB02", "lat": 23.07371014273798, "lng": 76.8559837324872},
+    {"id": "Football Ground", "lat": 23.07457561482792, "lng": 76.85586871514495},
+    {"id": "Cricket Ground", "lat": 23.07434281367943, "lng": 76.85405122273454},
+    {"id": "AR", "lat": 23.07803435724222, "lng": 76.85029779571637},
+    {"id": "Junction_AB1_UB", "lat": 23.0776215, "lng": 76.850988},
+    {"id": "Junction_Secondary_Gate_MPH", "lat": 23.075939, "lng": 76.8497355},
+    {"id": "Junction_Bus_OpenAud", "lat": 23.074338, "lng": 76.850832},
+    {"id": "Junction_Chancellor_GH1", "lat": 23.0751405, "lng": 76.851887},
+    {"id": "Junction_GH1_GH2", "lat": 23.0754495, "lng": 76.8531535},
+    {"id": "AB2_Corner_1", "lat": 23.074628, "lng": 76.854914},
+    {"id": "AB2_Corner_2", "lat": 23.0731385, "lng": 76.8568735},
+    {"id": "AB2_Corner_3", "lat": 23.074458, "lng": 76.857960},
+    {"id": "AB2_Corner_4", "lat": 23.073051, "lng": 76.8577815},
+    {"id": "Junction_BH1_BH2", "lat": 23.0740925, "lng": 76.8600585}
+]
+
+node_coords = {n["id"]: (n["lat"], n["lng"]) for n in nodes}
+
+G = nx.Graph()
+
+for node, edges in graph_data.items():
+    for edge in edges:
+        G.add_edge(node, edge["node"], weight=edge["distance"])
+
+sequence = ["Main Gate", "LC", "AR", "Junction_AB1_UB", "AB01"]
+
+m = folium.Map(location=node_coords["Main Gate"], zoom_start=16)
+
+for node_id, (lat, lng) in node_coords.items():
+    folium.CircleMarker(
+        location=[lat, lng],
+        radius=4,
+        popup=node_id,
+        color="blue",
+        fill=True
+    ).add_to(m)
+
+for i in range(len(sequence) - 1):
+    start_node = sequence[i]
+    end_node = sequence[i+1]
+    
+    if nx.has_path(G, start_node, end_node):
+        path = nx.shortest_path(G, source=start_node, target=end_node, weight="weight")
+        
+        path_coords = [node_coords[n] for n in path]
+        folium.PolyLine(
+            locations=path_coords,
+            color="red",
+            weight=3,
+            opacity=0.5
+        ).add_to(m)
+
+m.save("interactive_map.html")
