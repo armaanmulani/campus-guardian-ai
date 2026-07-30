@@ -9,7 +9,6 @@ from groq import Groq
 # 1. Load Environment Variables
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
-
 # 2. Fast-Fail Debug Check
 if not api_key:
     print("❌ ERROR: Could not find GROQ_API_KEY in the environment.")
