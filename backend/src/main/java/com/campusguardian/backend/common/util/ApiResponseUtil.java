@@ -25,4 +25,14 @@ public class ApiResponseUtil {
     public static ApiResponse<Void> success(String message) {
         return success(message, null);
     }
+
+    // ADD THIS
+    public static ApiResponse<Void> error(String message) {
+        return new ApiResponse<>(
+                false,
+                message,
+                null,
+                LocalDateTime.now()
+        );
+    }
 }
