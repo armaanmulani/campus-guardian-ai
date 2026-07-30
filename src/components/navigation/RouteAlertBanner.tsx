@@ -6,6 +6,7 @@ import type { AlertBanner } from "@/lib/types";
 
 interface RouteAlertBannerProps {
   alert: AlertBanner;
+  extraCount?: number;
   onDismiss: () => void;
 }
 
@@ -46,6 +47,7 @@ const config = {
 
 export default function RouteAlertBanner({
   alert,
+  extraCount = 0,
   onDismiss,
 }: RouteAlertBannerProps) {
   const [dismissed, setDismissed] = useState(false);
@@ -60,21 +62,26 @@ export default function RouteAlertBanner({
 
   return (
     <div
-      className={`banner-enter flex items-center gap-3 px-4 py-2.5 ${c.bg} ${c.text} border-b ${c.border}`}
+      className={`banner-enter flex h-9 w-fit max-w-[560px] items-center gap-2 rounded-md border px-3 shadow-sm ${c.bg} ${c.text} ${c.border}`}
     >
       {c.icon}
       <span
-        className={`flex-shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wide ${c.badge}`}
+        className={`flex-shrink-0 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wide ${c.badge}`}
       >
         {c.label}
       </span>
-      <p className="flex-1 text-sm font-medium leading-tight">{alert.message}</p>
+      <p className="flex-1 truncate text-xs font-semibold leading-none">{alert.message}</p>
+      {extraCount > 0 && (
+        <span className={`flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${c.badge}`}>
+          +{extraCount}
+        </span>
+      )}
       <button
         onClick={handleDismiss}
         aria-label="Dismiss alert"
-        className="flex-shrink-0 ml-2 opacity-70 hover:opacity-100 transition-opacity rounded p-0.5 hover:bg-black/10"
+        className="flex-shrink-0 opacity-70 hover:opacity-100 transition-opacity rounded p-0.5 hover:bg-black/10"
       >
-        <X className="w-4 h-4" />
+        <X className="w-3.5 h-3.5" />
       </button>
     </div>
   );

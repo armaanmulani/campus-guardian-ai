@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import RoutePanel from "@/components/navigation/RoutePanel";
 import RouteAlertBanner from "@/components/navigation/RouteAlertBanner";
 import ReportDrawer from "@/components/incidents/ReportDrawer";
 import { MOCK_INCIDENTS, MOCK_ROUTES } from "@/lib/mock-data";
 import type { AlertBanner, Incident } from "@/lib/types";
-import { ShieldCheck, Plus, Bell } from "lucide-react";
+import { ShieldCheck, Plus, Bell, LogIn, X } from "lucide-react";
 
 // Dynamically import the map to prevent SSR issues with Leaflet
 const CampusMap = dynamic(() => import("@/components/map/CampusMap"), {
@@ -48,6 +49,7 @@ export default function HomePage() {
   const [alerts, setAlerts] = useState<AlertBanner[]>(INITIAL_ALERTS);
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [activeRouteId, setActiveRouteId] = useState<string | null>(null);
 
   const dismissAlert = (id: string) =>
@@ -67,7 +69,7 @@ export default function HomePage() {
             <ShieldCheck className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
           </div>
           <div>
-            <h1 className="text-[1.3rem] font-bold text-slate-900 leading-none tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 leading-none tracking-tight">
               Campus Guardian 
             </h1>
             <p className="text-[10px] font-mono font-medium text-slate-400 mt-1 uppercase tracking-[0.15em]">
@@ -76,12 +78,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* live status */}
-          
-
+        <div className="relative flex items-center gap-3">
           {/* Alert badge */}
           <button
+            onClick={() => setNotificationsOpen((open) => !open)}
             aria-label="Notifications"
             className="relative flex items-center justify-center w-9 h-9 rounded-md text-slate-500 border border-transparent hover:border-slate-200 hover:bg-slate-50 active:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
           >
@@ -91,6 +91,51 @@ export default function HomePage() {
             )}
           </button>
 
+          {notificationsOpen && (
+            <div className="absolute right-28 top-12 w-80 rounded-lg border border-slate-200 bg-white shadow-xl z-[1200] overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">Notifications</p>
+                  <p className="text-xs text-slate-400">{alerts.length} active campus alert{alerts.length === 1 ? "" : "s"}</p>
+                </div>
+                <button
+                  onClick={() => setNotificationsOpen(false)}
+                  aria-label="Close notifications"
+                  className="p-1 rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="max-h-72 overflow-y-auto p-2">
+                {alerts.length > 0 ? (
+                  alerts.map((alert) => (
+                    <div key={alert.id} className="flex items-start gap-3 rounded-md px-3 py-2.5 hover:bg-slate-50">
+                      <span className={`mt-1.5 w-2 h-2 rounded-full ${alert.severity === "critical" ? "bg-red-500" : "bg-orange-500"}`} />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-slate-800 leading-snug">{alert.message}</p>
+                        <p className="mt-1 text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                          {alert.severity}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => dismissAlert(alert.id)}
+                        aria-label="Dismiss notification"
+                        className="p-1 rounded-md text-slate-300 hover:bg-slate-100 hover:text-slate-600"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <div className="px-3 py-8 text-center">
+                    <p className="text-sm font-medium text-slate-500">No active alerts</p>
+                    <p className="mt-1 text-xs text-slate-400">Campus is quiet right now.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Report incident */}
           <button
             onClick={() => setDrawerOpen(true)}
@@ -99,18 +144,27 @@ export default function HomePage() {
             <Plus className="w-4 h-4" strokeWidth={2.5} />
             Report Incident
           </button>
+
+          <Link
+            href="/login"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-600 border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+          >
+            <LogIn className="w-4 h-4" />
+            Login
+          </Link>
         </div>
       </header>
 
       {/* ── Alert Banners ────────────────────────────────── */}
-      <div className="flex flex-col z-40">
-        {alerts.map((alert) => (
+      <div className="z-40 bg-slate-50 px-6 py-2">
+        {alerts[0] && (
           <RouteAlertBanner
-            key={alert.id}
-            alert={alert}
-            onDismiss={() => dismissAlert(alert.id)}
+            key={alerts[0].id}
+            alert={alerts[0]}
+            extraCount={Math.max(alerts.length - 1, 0)}
+            onDismiss={() => dismissAlert(alerts[0].id)}
           />
-        ))}
+        )}
       </div>
 
       {/* ── Main Content ─────────────────────────────────── */}
@@ -133,15 +187,15 @@ export default function HomePage() {
           />
 
           {/* Floating map legend */}
-          <div className="absolute bottom-5 right-5 bg-white border border-slate-200 rounded-md shadow-md z-[1000] overflow-hidden">
-            <p className="text-[10px] font-mono font-semibold text-slate-500 px-3.5 pt-3 pb-2 uppercase tracking-[0.15em] border-b border-slate-100">
+          <div className="absolute bottom-5 right-5 flex items-center gap-3 bg-white/95 backdrop-blur-sm border border-slate-200/80 rounded-full shadow-sm px-4 py-2 z-[1000]">
+            <span className="text-[11px] font-medium text-slate-400 pr-3 border-r border-slate-200">
               Severity
-            </p>
-            <div className="flex flex-col px-3.5 py-2.5 gap-2">
+            </span>
+            <div className="flex items-center gap-3">
               {SEVERITY_LEGEND.map(({ color, label }) => (
-                <div key={label} className="flex items-center gap-2.5">
+                <div key={label} className="flex items-center gap-1.5">
                   <span className={`w-2 h-2 rounded-full ${color}`} />
-                  <span className="text-xs font-medium text-slate-600">{label}</span>
+                  <span className="text-[11px] font-medium text-slate-600">{label}</span>
                 </div>
               ))}
             </div>

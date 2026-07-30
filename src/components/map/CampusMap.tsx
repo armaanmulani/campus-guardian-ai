@@ -16,11 +16,14 @@ interface CampusMapProps {
   onIncidentClick: (incident: Incident) => void;
 }
 
-function MapController({ center }: { center: [number, number] }) {
+function MapController({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   const map = useMap();
   useEffect(() => {
-    map.setView(center, 16);
-  }, [center, map]);
+    map.fitBounds(bounds, {
+      padding: [48, 48],
+      maxZoom: 15,
+    });
+  }, [bounds, map]);
   return null;
 }
 
@@ -32,18 +35,18 @@ export default function CampusMap({
 }: CampusMapProps) {
   const campusBounds = useMemo(() => 
     L.latLngBounds(
-      L.latLng(23.0750, 76.8400), // SouthWest
-      L.latLng(23.0850, 76.8550)  // NorthEast
+      L.latLng(23.0700, 76.8360), // SouthWest
+      L.latLng(23.0910, 76.8620)  // NorthEast
     ), 
   []);
 
   return (
     <MapContainer
       center={[CAMPUS_CENTER.lat, CAMPUS_CENTER.lng]}
-      zoom={16}
-      minZoom={15}
+      zoom={14}
+      minZoom={13}
       maxBounds={campusBounds}
-      maxBoundsViscosity={1.0}
+      maxBoundsViscosity={0.35}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
       className="z-0"
@@ -69,7 +72,7 @@ export default function CampusMap({
       {/* Active route polyline */}
       {activeRoute && <RoutePolyline route={activeRoute} />}
 
-      <MapController center={[CAMPUS_CENTER.lat, CAMPUS_CENTER.lng]} />
+      <MapController bounds={campusBounds} />
     </MapContainer>
   );
 }
