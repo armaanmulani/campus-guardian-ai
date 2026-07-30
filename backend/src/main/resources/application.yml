@@ -41,3 +41,8 @@ springdoc:
 
   api-docs:
     path: /v3/api-docs
+
+jwt:
+  secret: ZmQ3NGEwM2E4ZjZmNGQ2N2IwYmQ0YzYxZGUzZjQzYzNiZWM5N2Y0YjY5OTY2NTc5YjFlYzNkODVkNzNhNDUzYQ==
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000
