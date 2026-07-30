@@ -1,0 +1,1724 @@
+{
+    "Main Gate": [
+        {
+            "node": "LC",
+            "distance": 636.45
+        },
+        {
+            "node": "AR",
+            "distance": 708.48
+        },
+        {
+            "node": "AB01",
+            "distance": 759.22
+        },
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 764.24
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 770.84
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 810.42
+        },
+        {
+            "node": "MPH",
+            "distance": 894.08
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 933.22
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 937.82
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 981.41
+        }
+    ],
+    "LC": [
+        {
+            "node": "AR",
+            "distance": 76.0
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 144.46
+        },
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 153.46
+        },
+        {
+            "node": "AB01",
+            "distance": 169.82
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 182.01
+        },
+        {
+            "node": "MPH",
+            "distance": 260.9
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 297.35
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 303.9
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 346.96
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 369.95
+        }
+    ],
+    "AB01": [
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 36.21
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 72.28
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 90.05
+        },
+        {
+            "node": "AR",
+            "distance": 109.81
+        },
+        {
+            "node": "LC",
+            "distance": 169.82
+        },
+        {
+            "node": "MPH",
+            "distance": 227.97
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 237.91
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 257.12
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 289.27
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 289.85
+        }
+    ],
+    "Mayuri Cafeteria": [
+        {
+            "node": "UnderBelly",
+            "distance": 39.6
+        },
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 59.35
+        },
+        {
+            "node": "AB01",
+            "distance": 90.05
+        },
+        {
+            "node": "AR",
+            "distance": 106.02
+        },
+        {
+            "node": "MPH",
+            "distance": 138.05
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 149.75
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 167.7
+        },
+        {
+            "node": "LC",
+            "distance": 182.01
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 202.43
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 214.16
+        }
+    ],
+    "UnderBelly": [
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 36.06
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 39.6
+        },
+        {
+            "node": "AR",
+            "distance": 68.88
+        },
+        {
+            "node": "AB01",
+            "distance": 72.28
+        },
+        {
+            "node": "LC",
+            "distance": 144.46
+        },
+        {
+            "node": "MPH",
+            "distance": 163.92
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 183.1
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 198.52
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 236.06
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 250.44
+        }
+    ],
+    "MPH": [
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 43.88
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 48.04
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 87.61
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 116.01
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 138.05
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 163.92
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 180.93
+        },
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 195.14
+        },
+        {
+            "node": "AR",
+            "distance": 199.13
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 225.69
+        }
+    ],
+    "Morepen Clinic": [
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 25.29
+        },
+        {
+            "node": "MPH",
+            "distance": 48.04
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 52.97
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 72.77
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 138.5
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 149.75
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 180.29
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 180.78
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 183.1
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 203.14
+        }
+    ],
+    "Secondary Gate": [
+        {
+            "node": "surveillance Block",
+            "distance": 34.8
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 43.73
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 52.97
+        },
+        {
+            "node": "MPH",
+            "distance": 87.61
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 94.7
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 141.69
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 171.45
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 172.44
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 202.43
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 208.54
+        }
+    ],
+    "surveillance Block": [
+        {
+            "node": "Secondary Gate",
+            "distance": 34.8
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 65.75
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 72.77
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 73.53
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 109.76
+        },
+        {
+            "node": "MPH",
+            "distance": 116.01
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 138.08
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 139.09
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 173.74
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 191.59
+        }
+    ],
+    "Bus Parking": [
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 45.33
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 48.98
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 90.71
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 109.76
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 110.25
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 141.69
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 173.01
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 180.78
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 183.2
+        },
+        {
+            "node": "MPH",
+            "distance": 225.69
+        }
+    ],
+    "Open Auditorium": [
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 45.38
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 73.38
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 90.71
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 115.62
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 131.86
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 171.54
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 173.74
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 208.54
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 232.24
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 233.15
+        }
+    ],
+    "Parcel Area": [
+        {
+            "node": "Bus Parking",
+            "distance": 48.98
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 65.75
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 88.52
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 94.7
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 126.8
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 131.86
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 137.53
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 138.5
+        },
+        {
+            "node": "MPH",
+            "distance": 180.93
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 189.13
+        }
+    ],
+    "Chancellor's Residence": [
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 63.35
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 73.38
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 82.0
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 110.25
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 126.8
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 126.81
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 139.09
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 171.45
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 180.29
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 196.57
+        }
+    ],
+    "GH Block 1": [
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 63.46
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 71.5
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 126.81
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 143.06
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 171.54
+        },
+        {
+            "node": "Cricket Ground",
+            "distance": 197.63
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 201.44
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 236.2
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 249.24
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 252.06
+        }
+    ],
+    "GH Block 2": [
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 71.56
+        },
+        {
+            "node": "Cricket Ground",
+            "distance": 135.5
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 143.06
+        },
+        {
+            "node": "AB2_Corner_1",
+            "distance": 149.64
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 205.33
+        },
+        {
+            "node": "Football Ground",
+            "distance": 233.48
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 268.07
+        },
+        {
+            "node": "AB02",
+            "distance": 299.27
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 299.31
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 336.25
+        }
+    ],
+    "Special Block": [
+        {
+            "node": "AB2_Corner_4",
+            "distance": 53.77
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 105.2
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 111.05
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 111.29
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 156.66
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 186.87
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 188.33
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 193.63
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 207.97
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 211.14
+        }
+    ],
+    "BH Block 1": [
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 124.5
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 174.27
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 184.42
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 211.57
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 213.0
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 218.7
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 248.93
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 268.16
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 272.31
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 315.01
+        }
+    ],
+    "Mayuri Mess": [
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 60.14
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 64.89
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 77.6
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 86.31
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 102.65
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 133.08
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 139.41
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 143.71
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 159.37
+        },
+        {
+            "node": "BH Block 1",
+            "distance": 184.42
+        }
+    ],
+    "BH Block 2": [
+        {
+            "node": "BH Block 7",
+            "distance": 63.53
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 64.89
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 69.22
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 85.62
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 89.58
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 119.2
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 124.43
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 148.12
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 152.19
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 155.61
+        }
+    ],
+    "BH Block 3": [
+        {
+            "node": "Central Hostel Office",
+            "distance": 43.12
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 61.61
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 70.32
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 77.6
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 82.35
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 85.62
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 102.69
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 108.11
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 117.44
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 123.71
+        }
+    ],
+    "Central Hostel Office": [
+        {
+            "node": "BH Block 3",
+            "distance": 43.12
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 57.36
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 82.4
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 86.31
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 101.44
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 104.73
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 119.2
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 149.47
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 151.04
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 163.7
+        }
+    ],
+    "BH Block 5": [
+        {
+            "node": "Central Hostel Office",
+            "distance": 57.36
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 64.06
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 70.32
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 116.98
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 121.63
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 122.27
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 129.89
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 138.88
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 139.41
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 154.93
+        }
+    ],
+    "BH Block 4": [
+        {
+            "node": "BH Block 8",
+            "distance": 59.0
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 64.06
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 82.35
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 90.08
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 97.44
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 101.44
+        },
+        {
+            "node": "Special Block",
+            "distance": 111.29
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 111.47
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 148.12
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 149.94
+        }
+    ],
+    "BH Block 6": [
+        {
+            "node": "Safal Mess",
+            "distance": 44.87
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 66.24
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 69.22
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 123.71
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 126.49
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 133.08
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 149.94
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 165.81
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 183.22
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 191.07
+        }
+    ],
+    "BH Block 7": [
+        {
+            "node": "Safal Mess",
+            "distance": 47.23
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 61.61
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 63.53
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 66.24
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 88.96
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 90.08
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 102.65
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 104.73
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 116.98
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 149.9
+        }
+    ],
+    "BH Block 8": [
+        {
+            "node": "BH Block 4",
+            "distance": 59.0
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 81.75
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 88.96
+        },
+        {
+            "node": "Special Block",
+            "distance": 105.2
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 117.44
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 120.28
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 122.27
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 126.49
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 149.47
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 152.19
+        }
+    ],
+    "Safal Mess": [
+        {
+            "node": "BH Block 6",
+            "distance": 44.87
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 47.23
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 81.75
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 89.58
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 108.11
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 111.47
+        },
+        {
+            "node": "Mayuri Mess",
+            "distance": 143.71
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 151.04
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 154.93
+        },
+        {
+            "node": "Special Block",
+            "distance": 186.87
+        }
+    ],
+    "AB02": [
+        {
+            "node": "Football Ground",
+            "distance": 96.95
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 111.02
+        },
+        {
+            "node": "AB2_Corner_1",
+            "distance": 149.64
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 197.98
+        },
+        {
+            "node": "Cricket Ground",
+            "distance": 209.84
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 218.61
+        },
+        {
+            "node": "Special Block",
+            "distance": 222.07
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 289.82
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 291.51
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 299.27
+        }
+    ],
+    "Football Ground": [
+        {
+            "node": "AB02",
+            "distance": 96.95
+        },
+        {
+            "node": "AB2_Corner_1",
+            "distance": 97.84
+        },
+        {
+            "node": "Cricket Ground",
+            "distance": 187.72
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 190.0
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 214.34
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 233.48
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 258.9
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 294.27
+        },
+        {
+            "node": "Special Block",
+            "distance": 295.72
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 320.48
+        }
+    ],
+    "Cricket Ground": [
+        {
+            "node": "AB2_Corner_1",
+            "distance": 93.79
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 135.5
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 153.55
+        },
+        {
+            "node": "Football Ground",
+            "distance": 187.72
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 197.63
+        },
+        {
+            "node": "AB02",
+            "distance": 209.84
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 238.5
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 284.7
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 287.67
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 318.26
+        }
+    ],
+    "AR": [
+        {
+            "node": "UnderBelly",
+            "distance": 68.88
+        },
+        {
+            "node": "LC",
+            "distance": 76.0
+        },
+        {
+            "node": "Junction_AB1_UB",
+            "distance": 84.22
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 106.02
+        },
+        {
+            "node": "AB01",
+            "distance": 109.81
+        },
+        {
+            "node": "MPH",
+            "distance": 199.13
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 230.01
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 239.99
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 281.6
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 301.54
+        }
+    ],
+    "Junction_AB1_UB": [
+        {
+            "node": "UnderBelly",
+            "distance": 36.06
+        },
+        {
+            "node": "AB01",
+            "distance": 36.21
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 59.35
+        },
+        {
+            "node": "AR",
+            "distance": 84.22
+        },
+        {
+            "node": "LC",
+            "distance": 153.46
+        },
+        {
+            "node": "MPH",
+            "distance": 195.14
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 209.1
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 226.75
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 261.77
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 272.72
+        }
+    ],
+    "Junction_Secondary_Gate_MPH": [
+        {
+            "node": "Morepen Clinic",
+            "distance": 25.29
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 43.73
+        },
+        {
+            "node": "MPH",
+            "distance": 43.88
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 73.53
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 137.53
+        },
+        {
+            "node": "Mayuri Cafeteria",
+            "distance": 167.7
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 183.2
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 196.57
+        },
+        {
+            "node": "UnderBelly",
+            "distance": 198.52
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 210.41
+        }
+    ],
+    "Junction_Bus_OpenAud": [
+        {
+            "node": "Bus Parking",
+            "distance": 45.33
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 45.38
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 82.0
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 88.52
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 138.08
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 140.04
+        },
+        {
+            "node": "Secondary Gate",
+            "distance": 172.44
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 201.44
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 203.14
+        },
+        {
+            "node": "Junction_Secondary_Gate_MPH",
+            "distance": 210.41
+        }
+    ],
+    "Junction_Chancellor_GH1": [
+        {
+            "node": "Chancellor's Residence",
+            "distance": 63.35
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 63.46
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 115.62
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 134.04
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 140.04
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 173.01
+        },
+        {
+            "node": "Parcel Area",
+            "distance": 189.13
+        },
+        {
+            "node": "surveillance Block",
+            "distance": 191.59
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 205.33
+        },
+        {
+            "node": "Morepen Clinic",
+            "distance": 216.86
+        }
+    ],
+    "Junction_GH1_GH2": [
+        {
+            "node": "GH Block 1",
+            "distance": 71.5
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 71.56
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 134.04
+        },
+        {
+            "node": "Cricket Ground",
+            "distance": 153.55
+        },
+        {
+            "node": "Chancellor's Residence",
+            "distance": 197.07
+        },
+        {
+            "node": "AB2_Corner_1",
+            "distance": 201.94
+        },
+        {
+            "node": "Open Auditorium",
+            "distance": 233.15
+        },
+        {
+            "node": "Junction_Bus_OpenAud",
+            "distance": 267.72
+        },
+        {
+            "node": "Football Ground",
+            "distance": 294.27
+        },
+        {
+            "node": "Bus Parking",
+            "distance": 305.03
+        }
+    ],
+    "AB2_Corner_1": [
+        {
+            "node": "Cricket Ground",
+            "distance": 93.79
+        },
+        {
+            "node": "Football Ground",
+            "distance": 97.84
+        },
+        {
+            "node": "GH Block 2",
+            "distance": 149.64
+        },
+        {
+            "node": "AB02",
+            "distance": 149.64
+        },
+        {
+            "node": "Junction_GH1_GH2",
+            "distance": 201.94
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 260.03
+        },
+        {
+            "node": "GH Block 1",
+            "distance": 263.47
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 312.18
+        },
+        {
+            "node": "Junction_Chancellor_GH1",
+            "distance": 314.86
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 341.76
+        }
+    ],
+    "AB2_Corner_2": [
+        {
+            "node": "AB2_Corner_4",
+            "distance": 93.4
+        },
+        {
+            "node": "AB02",
+            "distance": 111.02
+        },
+        {
+            "node": "Special Block",
+            "distance": 111.05
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 184.07
+        },
+        {
+            "node": "Football Ground",
+            "distance": 190.0
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 190.71
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 204.85
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 208.69
+        },
+        {
+            "node": "AB2_Corner_1",
+            "distance": 260.03
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 262.2
+        }
+    ],
+    "AB2_Corner_3": [
+        {
+            "node": "BH Block 5",
+            "distance": 129.89
+        },
+        {
+            "node": "AB2_Corner_4",
+            "distance": 157.51
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 163.7
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 178.19
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 184.07
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 195.62
+        },
+        {
+            "node": "Special Block",
+            "distance": 211.14
+        },
+        {
+            "node": "Football Ground",
+            "distance": 214.34
+        },
+        {
+            "node": "Junction_BH1_BH2",
+            "distance": 218.49
+        },
+        {
+            "node": "AB02",
+            "distance": 218.61
+        }
+    ],
+    "AB2_Corner_4": [
+        {
+            "node": "Special Block",
+            "distance": 53.77
+        },
+        {
+            "node": "AB2_Corner_2",
+            "distance": 93.4
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 97.44
+        },
+        {
+            "node": "BH Block 8",
+            "distance": 120.28
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 121.63
+        },
+        {
+            "node": "AB2_Corner_3",
+            "distance": 157.51
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 174.19
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 177.85
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 186.35
+        },
+        {
+            "node": "AB02",
+            "distance": 197.98
+        }
+    ],
+    "Junction_BH1_BH2": [
+        {
+            "node": "Mayuri Mess",
+            "distance": 60.14
+        },
+        {
+            "node": "Central Hostel Office",
+            "distance": 82.4
+        },
+        {
+            "node": "BH Block 3",
+            "distance": 102.69
+        },
+        {
+            "node": "BH Block 2",
+            "distance": 124.43
+        },
+        {
+            "node": "BH Block 1",
+            "distance": 124.5
+        },
+        {
+            "node": "BH Block 5",
+            "distance": 138.88
+        },
+        {
+            "node": "BH Block 7",
+            "distance": 149.9
+        },
+        {
+            "node": "BH Block 4",
+            "distance": 180.39
+        },
+        {
+            "node": "BH Block 6",
+            "distance": 191.07
+        },
+        {
+            "node": "Safal Mess",
+            "distance": 195.29
+        }
+    ]
+}
