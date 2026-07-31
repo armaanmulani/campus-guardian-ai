@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { MOCK_REPORTS, Report } from '@/lib/mockReports';
 
 const severityClass: Record<Report['severity'], string> = { Critical: 'critical', High: 'high', Medium: 'medium', Low: 'low' };
@@ -21,6 +21,11 @@ function groupComplaints(items: Report[]): ComplaintGroup[] {
 }
 
 export default function AdminDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [reports, setReports] = useState<Report[]>(MOCK_REPORTS);
   const [noticeVisible, setNoticeVisible] = useState(true);
   const [activeFilter, setActiveFilter] = useState<'ALL' | Report['status']>('ALL');
@@ -28,8 +33,43 @@ export default function AdminDashboard() {
   const visibleReports = groupComplaints(activeFilter === 'ALL' ? reports : reports.filter(({ status }) => status === activeFilter)).toSorted((a, b) => priority[b.severity] - priority[a.severity]);
   const updateStatus = (ids: string[], status: 'APPROVED' | 'REJECTED') => setReports(current => current.map(report => ids.includes(report.id) ? { ...report, status } : report));
 
+  useEffect(() => {
+    setIsAuthenticated(sessionStorage.getItem('campus-guardian-admin') === 'true');
+    setAuthReady(true);
+  }, []);
+
+  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!email.trim() || !password) {
+      setLoginError('Enter your admin email and password.');
+      return;
+    }
+    sessionStorage.setItem('campus-guardian-admin', 'true');
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('campus-guardian-admin');
+    setIsAuthenticated(false);
+    setPassword('');
+  };
+
+  if (!authReady) return null;
+
+  if (!isAuthenticated) return <main className="login-screen">
+    <form className="login-card" onSubmit={handleLogin}>
+      <div className="login-mark">CG</div>
+      <p className="login-eyebrow">CAMPUS GUARDIAN</p>
+      <h1>Admin login</h1>
+      <label>Admin email<input type="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="email" placeholder="admin@campusguardian.com" /></label>
+      <label>Password<input type="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" placeholder="Enter password" /></label>
+      {loginError && <p className="login-error">{loginError}</p>}
+      <button type="submit">Log in</button>
+    </form>
+  </main>;
+
   return <div className="admin-screen">
-    <header className="admin-topbar"><div className="admin-brand"><div className="admin-brand-mark">CG</div><div><h1>Campus Guardian</h1><p>ADMIN SAFETY PORTAL</p></div></div><div className="admin-actions"><span className="admin-user">Administrator</span><button className="admin-bell" aria-label="Notifications">o<i /></button><button className="admin-report">View live map</button></div></header>
+    <header className="admin-topbar"><div className="admin-brand"><div className="admin-brand-mark">CG</div><div><h1>Campus Guardian</h1><p>ADMIN SAFETY PORTAL</p></div></div><div className="admin-actions"><span className="admin-user">Administrator</span><button className="admin-bell" aria-label="Notifications">o<i /></button><button className="admin-report" onClick={handleLogout}>Log out</button></div></header>
     {noticeVisible && <div className="admin-alert"><span>!</span><b>HIGH</b><strong>{pendingCount} incident{pendingCount === 1 ? '' : 's'} need review right now.</strong><button onClick={() => setNoticeVisible(false)} aria-label="Dismiss alert">x</button></div>}
     <main className="admin-layout">
       <aside className="admin-sidebar">
