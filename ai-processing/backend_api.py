@@ -2,7 +2,7 @@ import httpx
 from fastapi import HTTPException
 
 # Replace this with your teammate's backend API URL
-BACKEND_API_URL = "http://localhost:8080/api/v1/internal/ingest"
+BACKEND_API_URL = "http://172.25.186.196:8080/api/v1/internal/ingest"
 
 
 async def send_to_backend(user_id: str, incident_data: dict):
