@@ -1,15 +1,17 @@
-from fastapi import FastAPI, Form, UploadFile, File, HTTPException, Header
+from fastapi import APIRouter, UploadFile, File, Form, Header, HTTPException
 from typing import Optional
-import traceback
 
 from incident_analyzer import analyze_incident
 from ticket_generator import generate_ticket
 from backend_api import send_to_backend
 
-app = FastAPI()
+router = APIRouter(
+    prefix="/api/v1/incidents",
+    tags=["Incidents"]
+)
 
 
-@app.post("/api/v1/incidents/report")
+@router.post("/report")
 async def report_incident(
     incident_type: str = Form(...),
     title: str = Form(...),
@@ -17,9 +19,24 @@ async def report_incident(
     image: Optional[UploadFile] = File(None),
     x_user_id: str = Header(...)
 ):
+    """
+    Complete AI pipeline
+
+    Frontend
+        ↓
+    AI Incident Analyzer
+        ↓
+    Ticket Generator
+        ↓
+    Backend API
+    """
+
     try:
 
-        # AI Analysis
+        # ---------------------------------
+        # Analyze Incident
+        # ---------------------------------
+
         incident = await analyze_incident(
             text=f"""
 Incident Type: {incident_type}
@@ -31,31 +48,45 @@ Description: {description}
             image=image
         )
 
-        # Ticket Generation
+        # ---------------------------------
+        # Generate Ticket
+        # ---------------------------------
+
         ticket = generate_ticket(incident)
 
-        # Merge both
-        combined_incident = {
+        # ---------------------------------
+        # Merge Incident + Ticket
+        # ---------------------------------
+
+        combined_data = {
             **incident.model_dump(),
             **ticket.model_dump()
         }
 
-        combined_incident.pop("summary", None)
+        # remove duplicate summary field
+        combined_data.pop("summary", None)
 
-        # Send to backend
-        await send_to_backend(
+        # ---------------------------------
+        # Send to Backend
+        # ---------------------------------
+
+        backend_response = await send_to_backend(
             user_id=x_user_id,
-            incident_data=combined_incident
+            incident_data=combined_data
         )
 
-        # Just acknowledge that processing succeeded
+        # ---------------------------------
+        # Success
+        # ---------------------------------
+
         return {
             "success": True,
-            "message": "Incident processed and forwarded to backend."
+            "message": "Incident successfully processed.",
+            "backend_response": backend_response
         }
 
     except Exception as e:
-        traceback.print_exc()
+
         raise HTTPException(
             status_code=500,
             detail=str(e)
