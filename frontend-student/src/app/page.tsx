@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import RoutePanel from "@/components/navigation/RoutePanel";
 import RouteAlertBanner from "@/components/navigation/RouteAlertBanner";
 import ReportDrawer from "@/components/incidents/ReportDrawer";
 import { MOCK_INCIDENTS, MOCK_ROUTES } from "@/lib/mock-data";
 import type { AlertBanner, Incident } from "@/lib/types";
-import { ShieldCheck, Plus, Bell, LogIn, X } from "lucide-react";
+import { ShieldCheck, Plus, Bell, LogIn, LogOut, X } from "lucide-react";
 
 // Dynamically import the map to prevent SSR issues with Leaflet
 const CampusMap = dynamic(() => import("@/components/map/CampusMap"), {
@@ -46,11 +47,43 @@ const SEVERITY_LEGEND = [
 ];
 
 export default function HomePage() {
+  const router = useRouter();
+
   const [alerts, setAlerts] = useState<AlertBanner[]>(INITIAL_ALERTS);
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [activeRouteId, setActiveRouteId] = useState<string | null>(null);
+
+  // Auth state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  useEffect(() => {
+    // localStorage only exists client-side, so this must run in useEffect
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const name = localStorage.getItem("userName") || "";
+    setIsLoggedIn(loggedIn);
+    setUserName(name);
+  }, []);
+
+  const initials = userName
+    .split(" ")
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase())
+    .slice(0, 2)
+    .join("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("role");
+    setIsLoggedIn(false);
+    setUserName("");
+    setProfileOpen(false);
+    router.push("/");
+  };
 
   const dismissAlert = (id: string) =>
     setAlerts((prev) => prev.filter((a) => a.id !== id));
@@ -66,11 +99,11 @@ export default function HomePage() {
 
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-md bg-indigo-600 flex items-center justify-center">
-            <ShieldCheck   className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
+            <ShieldCheck className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-slate-900 leading-none tracking-tight">
-              Campus Guardian 
+              Campus Guardian
             </h1>
             <p className="text-[10px] font-mono font-medium text-slate-400 mt-1 uppercase tracking-[0.15em]">
               Student Safety Portal
@@ -145,13 +178,41 @@ export default function HomePage() {
             Report Incident
           </button>
 
-          <Link
-            href="/login"
-            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-600 border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
-          >
-            <LogIn className="w-4 h-4" />
-            Login
-          </Link>
+          {/* Login button OR user avatar */}
+          {isLoggedIn ? (
+            <div className="relative">
+              <button
+                onClick={() => setProfileOpen((open) => !open)}
+                aria-label="Account menu"
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 active:bg-indigo-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+              >
+                {initials || "?"}
+              </button>
+
+              {profileOpen && (
+                <div className="absolute right-0 top-11 w-48 rounded-lg border border-slate-200 bg-white shadow-xl z-[1200] overflow-hidden">
+                  <div className="px-4 py-3 border-b border-slate-100">
+                    <p className="text-sm font-semibold text-slate-900 truncate">{userName}</p>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-600 border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+            >
+              <LogIn className="w-4 h-4" />
+              Login
+            </Link>
+          )}
         </div>
       </header>
 

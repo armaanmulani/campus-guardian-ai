@@ -188,9 +188,7 @@ export default function RoutePanel({
                         {route.name}
                       </p>
                     </div>
-                    <div className="ml-2 flex-shrink-0">
-                      <SafetyBadge score={route.safetyScore} />
-                    </div>
+                    
                   </div>
 
                   <div className="flex items-center gap-3 mb-2.5">

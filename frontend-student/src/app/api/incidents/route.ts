@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server";
 
-const MIDDLEWARE_URL = process.env.MIDDLEWARE_URL || "http://172.25.44.70:8000/api/v1/incidents/report";
+const MIDDLEWARE_URL =
+  process.env.MIDDLEWARE_URL ||
+  "http://172.25.44.70:8000/api/v1/incidents/report";
+
+console.log("Route file loaded");
 
 export async function POST(request: Request) {
+  console.log("========== POST ROUTE HIT ==========");
+
   try {
-    // 1. Parse JSON from frontend
     const body = await request.json();
+    console.log("Received body:", body);
+
+    // rest of your code...
 
     // 2. Extract strictly title, description, and incident type
     const title = body.title || "";
@@ -21,11 +29,30 @@ export async function POST(request: Request) {
 
     // 4. Forward to middleware
     const middlewareResponse = await fetch(MIDDLEWARE_URL, {
-      method: "POST",
-      body: formData, // Node/Next handles the multipart boundary header automatically
-    });
+    method: "POST",
+    headers: {
+    "x-user-id": "student123",
+  },
+  body: formData,
+});
 
-    const data = await middlewareResponse.json();
+    const text = await middlewareResponse.text();
+
+console.log("Middleware Response:", text);
+
+let data;
+
+try {
+  data = JSON.parse(text);
+} catch {
+  data = { message: text };
+}
+
+console.log("Status:", middlewareResponse.status);
+
+return NextResponse.json(data, {
+  status: middlewareResponse.status,
+});
 
     return NextResponse.json(data, { status: middlewareResponse.status });
   } catch (error) {
