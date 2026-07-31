@@ -46,7 +46,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse login(LoginRequest request) {
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -54,21 +53,21 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
+        System.out.println("Authentication Passed");
+
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
 
-        String token = jwtService.generateToken(new CustomUserDetails(user));
+        String token = jwtService.generateToken(
+                new CustomUserDetails(user)
+        );
 
-        System.out.println("Generated Token = " + token);
-
-        AuthResponse response = AuthResponse.builder()
-                .accessToken(token)
-                .tokenType("Bearer")
+        return AuthResponse.builder()
+                .token(token)
                 .expiresIn(jwtService.getAccessTokenExpiration())
+                .email(user.getEmail())
+                .role(user.getRole().name())
+                .message("User authenticated successfully")
                 .build();
-
-        System.out.println("Response = " + response);
-
-        return response;
     }
 }

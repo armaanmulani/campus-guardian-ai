@@ -19,11 +19,8 @@ public class IncidentController {
 
     // Python Dev posts here
     @PostMapping("/internal/ingest")
-    public ResponseEntity<?> ingestIncident(
-            @RequestParam("userId") String userId,
-            @RequestBody IncidentIngestRequest request) {
-
-        Incident saved = incidentService.saveAndProcessIncident(request, userId);
+    public ResponseEntity<?> ingestIncident(@RequestBody IncidentIngestRequest request) {
+        Incident saved = incidentService.saveAndProcessIncident(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 

@@ -16,16 +16,12 @@ public class IncidentService {
     private final IncidentRepository incidentRepository;
 
     @Transactional
-    public Incident saveAndProcessIncident(IncidentIngestRequest request, String userId) {
-        if (request == null || request.getIncident() == null) {
-            throw new IllegalArgumentException("Request body must contain a valid 'incident' object");
-        }
-
+    public Incident saveAndProcessIncident(IncidentIngestRequest request) {
         IncidentIngestRequest.IncidentDto dto = request.getIncident();
 
         Incident incident = Incident.builder()
                 .ticketId(dto.getTicketId())
-                .userId(userId)
+                .userId(request.getUserId()) // <--- Retrieves userId from request body
                 .location(dto.getLocation())
                 .category(dto.getCategory())
                 .shortSummary(dto.getShortSummary())
