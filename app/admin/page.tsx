@@ -1,11 +1,31 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState, useSyncExternalStore } from 'react';
 import { MOCK_REPORTS, Report } from '@/lib/mockReports';
 
 const severityClass: Record<Report['severity'], string> = { Critical: 'critical', High: 'high', Medium: 'medium', Low: 'low' };
 const priority: Record<Report['severity'], number> = { Critical: 4, High: 3, Medium: 2, Low: 1 };
 type ComplaintGroup = Report & { reportIds: string[]; complaintCount: number };
+
+const AUTH_STORAGE_KEY = 'campus-guardian-admin';
+const AUTH_CHANGE_EVENT = 'campus-guardian-auth-change';
+
+function subscribeToAuthentication(callback: () => void) {
+  window.addEventListener(AUTH_CHANGE_EVENT, callback);
+  return () => window.removeEventListener(AUTH_CHANGE_EVENT, callback);
+}
+
+function getAuthenticationSnapshot() {
+  return sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+}
+
+function getServerAuthenticationSnapshot() {
+  return false;
+}
+
+function notifyAuthenticationChange() {
+  window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
+}
 
 function groupComplaints(items: Report[]): ComplaintGroup[] {
   const groups = new Map<string, ComplaintGroup>();
@@ -21,8 +41,11 @@ function groupComplaints(items: Report[]): ComplaintGroup[] {
 }
 
 export default function AdminDashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authReady, setAuthReady] = useState(false);
+  const isAuthenticated = useSyncExternalStore(
+    subscribeToAuthentication,
+    getAuthenticationSnapshot,
+    getServerAuthenticationSnapshot,
+  );
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -33,28 +56,42 @@ export default function AdminDashboard() {
   const visibleReports = groupComplaints(activeFilter === 'ALL' ? reports : reports.filter(({ status }) => status === activeFilter)).toSorted((a, b) => priority[b.severity] - priority[a.severity]);
   const updateStatus = (ids: string[], status: 'APPROVED' | 'REJECTED') => setReports(current => current.map(report => ids.includes(report.id) ? { ...report, status } : report));
 
-  useEffect(() => {
-    setIsAuthenticated(sessionStorage.getItem('campus-guardian-admin') === 'true');
-    setAuthReady(true);
-  }, []);
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setLoginError('');
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!email.trim() || !password) {
-      setLoginError('Enter your admin email and password.');
+  if (!email.trim() || !password) {
+    setLoginError('Enter your admin email and password.');
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_ADMIN_LOGIN_URL!,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+
+    if (!response.ok) {
+      setLoginError('Invalid email or password.');
       return;
     }
-    sessionStorage.setItem('campus-guardian-admin', 'true');
-    setIsAuthenticated(true);
-  };
+
+    sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
+    notifyAuthenticationChange();
+  } catch {
+    setLoginError('Cannot connect to the login server.');
+  }
+};
 
   const handleLogout = () => {
-    sessionStorage.removeItem('campus-guardian-admin');
-    setIsAuthenticated(false);
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    notifyAuthenticationChange();
     setPassword('');
   };
-
-  if (!authReady) return null;
 
   if (!isAuthenticated) return <main className="login-screen">
     <form className="login-card" onSubmit={handleLogin}>
