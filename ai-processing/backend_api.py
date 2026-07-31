@@ -1,13 +1,30 @@
+import os
 import httpx
+from dotenv import load_dotenv
 from fastapi import HTTPException
 
-# Replace this with your teammate's backend API URL
-BACKEND_API_URL = "http://172.25.186.196:8080/api/v1/internal/ingest"
+# ---------------------------------------
+# Load Environment Variables
+# ---------------------------------------
+
+load_dotenv()
+
+BACKEND_API_URL = os.getenv(
+    "BACKEND_API_URL",
+    "http://localhost:8080/api/v1/incidents"
+)
 
 
-async def send_to_backend(user_id: str, incident_data: dict):
+# ---------------------------------------
+# Send Incident to Main Backend
+# ---------------------------------------
+
+async def send_to_backend(
+    user_id: str,
+    incident_data: dict
+):
     """
-    Sends the combined incident JSON to the main backend.
+    Sends processed incident to the main backend.
     """
 
     payload = {
@@ -16,6 +33,7 @@ async def send_to_backend(user_id: str, incident_data: dict):
     }
 
     try:
+
         async with httpx.AsyncClient(timeout=30.0) as client:
 
             response = await client.post(
@@ -26,7 +44,8 @@ async def send_to_backend(user_id: str, incident_data: dict):
                 }
             )
 
-        if response.status_code not in [200, 201]:
+        if response.status_code not in (200, 201):
+
             raise HTTPException(
                 status_code=response.status_code,
                 detail=f"Backend Error: {response.text}"
@@ -34,13 +53,22 @@ async def send_to_backend(user_id: str, incident_data: dict):
 
         return response.json()
 
-    except httpx.RequestError as e:
+    except httpx.ConnectError:
+
         raise HTTPException(
             status_code=500,
-            detail=f"Could not connect to backend: {str(e)}"
+            detail="Could not connect to backend."
+        )
+
+    except httpx.TimeoutException:
+
+        raise HTTPException(
+            status_code=500,
+            detail="Backend request timed out."
         )
 
     except Exception as e:
+
         raise HTTPException(
             status_code=500,
             detail=str(e)
