@@ -5,7 +5,6 @@ from pydantic import BaseModel
 
 from models import Incident
 
-
 # ---------------------------------------
 # Category -> Department Mapping
 # ---------------------------------------
@@ -72,7 +71,7 @@ class Ticket(BaseModel):
 
 def generate_ticket(incident: Incident) -> Ticket:
     """
-    Generates a maintenance ticket from an analyzed incident.
+    Generate a maintenance ticket from an analyzed incident.
     """
 
     department = CATEGORY_TO_DEPARTMENT.get(
@@ -90,7 +89,7 @@ def generate_ticket(incident: Incident) -> Ticket:
         "24 Hours"
     )
 
-    ticket = Ticket(
+    return Ticket(
         ticket_id=f"INC-{uuid.uuid4().hex[:8].upper()}",
         location=incident.location,
         node_id=incident.node_id,
@@ -103,5 +102,3 @@ def generate_ticket(incident: Incident) -> Ticket:
         summary=incident.short_summary,
         created_at=datetime.utcnow().isoformat()
     )
-
-    return ticket
