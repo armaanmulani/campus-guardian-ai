@@ -4,6 +4,7 @@ import traceback
 
 from incident_analyzer import analyze_incident
 from ticket_generator import generate_ticket
+from backend_api import send_to_backend
 
 app = FastAPI()
 
@@ -18,9 +19,7 @@ async def report_incident(
 ):
     try:
 
-        # -----------------------------
-        # AI Incident Analysis
-        # -----------------------------
+        # AI Analysis
         incident = await analyze_incident(
             text=f"""
 Incident Type: {incident_type}
@@ -32,34 +31,27 @@ Description: {description}
             image=image
         )
 
-        print("===== INCIDENT =====")
-        print(incident.model_dump())
-
-        # -----------------------------
         # Ticket Generation
-        # -----------------------------
         ticket = generate_ticket(incident)
 
-        print("===== TICKET =====")
-        print(ticket.model_dump())
-
-        # -----------------------------
-        # Merge Incident + Ticket
-        # -----------------------------
+        # Merge both
         combined_incident = {
             **incident.model_dump(),
             **ticket.model_dump()
         }
 
-        # Optional: remove duplicate summary field
         combined_incident.pop("summary", None)
 
-        # -----------------------------
-        # Final Response
-        # -----------------------------
+        # Send to backend
+        await send_to_backend(
+            user_id=x_user_id,
+            incident_data=combined_incident
+        )
+
+        # Just acknowledge that processing succeeded
         return {
-            "user_id": x_user_id,
-            "incident": combined_incident
+            "success": True,
+            "message": "Incident processed and forwarded to backend."
         }
 
     except Exception as e:
