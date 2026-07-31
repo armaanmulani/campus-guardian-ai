@@ -1,0 +1,38 @@
+import { NextResponse } from "next/server";
+
+const MIDDLEWARE_URL = process.env.MIDDLEWARE_URL || "http://172.25.44.70:8000/api/v1/incidents/report";
+
+export async function POST(request: Request) {
+  try {
+    // 1. Parse JSON from frontend
+    const body = await request.json();
+
+    // 2. Extract strictly title, description, and incident type
+    const title = body.title || "";
+    const description = body.description || "";
+    // Checks common frontend keys for category/type
+    const incidentType = body.category || body.incidentType || body.type || body.incident_type || "";
+
+    // 3. Build FormData with ONLY these three fields
+    const formData = new FormData();
+    formData.append("title", String(title));
+    formData.append("description", String(description));
+    formData.append("incident_type", String(incidentType)); // Adjust field key if your middleware expects e.g. "incidentType" or "category"
+
+    // 4. Forward to middleware
+    const middlewareResponse = await fetch(MIDDLEWARE_URL, {
+      method: "POST",
+      body: formData, // Node/Next handles the multipart boundary header automatically
+    });
+
+    const data = await middlewareResponse.json();
+
+    return NextResponse.json(data, { status: middlewareResponse.status });
+  } catch (error) {
+    console.error("[MIDDLEWARE_FORWARD_ERROR]", error);
+    return NextResponse.json(
+      { error: "Failed to communicate with safety middleware service" },
+      { status: 500 }
+    );
+  }
+}
