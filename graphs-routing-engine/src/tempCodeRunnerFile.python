@@ -1,0 +1,25 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from graph_builder import load_nodes
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+NON_DESTINATION_TYPES = {"junction", "road", "entrance"}
+
+
+@app.get("/nodes")
+def get_nodes():
+    nodes = load_nodes()
+    # only real, user-facing destinations — hides internal routing points
+    destinations = {
+        node_id: n for node_id, n in nodes.items()
+        if n.get("type") not in NON_DESTINATION_TYPES
+    }
+    return destinations

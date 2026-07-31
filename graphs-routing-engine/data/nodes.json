@@ -29,6 +29,21 @@
   "lng": 76.8532917,
   "type": "road"
 },
+"ShortCut": {
+  "id": "ShortCut",
+  "name": "Short Cut",
+  "lat": 23.074847,
+  "lng": 76.853236,
+  "type": "road"
+},
+
+"ShedOutside": {
+  "id": "ShedOutside",
+  "name": "Shed Outside",
+  "lat": 23.073200,
+  "lng": 76.855050,
+  "type": "road"
+},
 
 "Shed_AB2": {
   "id": "Shed_AB2",

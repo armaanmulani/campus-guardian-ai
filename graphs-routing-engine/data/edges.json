@@ -355,6 +355,31 @@
     "accessible": true,
     "blocked": false,
     "reason": null
-  }
+  },
+  "E44": {
+  "from": "ShortCut",
+  "to": "ShedOutside",
+  "weight_m": 160,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  "E45": {
+  "from": "Shed_Break",
+  "to": "ShortCut",
+  "weight_m": 0,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E46": {
+  "from": "ShedOutside",
+  "to": "AB02",
+  "weight_m": 0,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+}
   
 }
