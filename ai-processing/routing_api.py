@@ -1,49 +1,23 @@
-##im getting lat long and desti and parameters and have to transfer this to routing_graph 
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import APIRouter
+from models import RouteRequest
 
-
-# -----------------------------
-# Request Model
-# -----------------------------
-class RouteRequest(BaseModel):
-    latitude: float
-    longitude: float
-    destination: str
-
-
-# -----------------------------
-# Response Model (Optional)
-# -----------------------------
-class RouteResponse(BaseModel):
-    success: bool
-    message: str
-    latitude: float
-    longitude: float
-    destination: str
-
-
-# -----------------------------
-# Navigation API
-# -----------------------------
-@app.post(
-    "/api/v1/navigation/route",
-    response_model=RouteResponse
+router = APIRouter(
+    prefix="/api/v1/navigation",
+    tags=["Navigation"]
 )
+
+
+@router.post("/route")
 async def get_shortest_route(request: RouteRequest):
-
     """
-    Receives:
-    - User Latitude
-    - User Longitude
-    - Destination
+    Receives the user's current GPS location and destination.
 
-    Graph Team will later compute the shortest path.
+    Graph Team will later replace this function with the
+    shortest path algorithm.
     """
 
-    # -------------------------------------------------
-    # TODO:
-    # Graph teammate will replace this section with:
+    # TODO (Graph Team)
+    # Example:
     #
     # route = find_shortest_path(
     #     latitude=request.latitude,
@@ -52,12 +26,9 @@ async def get_shortest_route(request: RouteRequest):
     # )
     #
     # return route
-    # -------------------------------------------------
 
-    return RouteResponse(
-        success=True,
-        message="Routing request received successfully.",
-        latitude=request.latitude,
-        longitude=request.longitude,
-        destination=request.destination
-    )
+    return {
+        "success": True,
+        "message": "Routing request received.",
+        "request": request.model_dump()
+    }
