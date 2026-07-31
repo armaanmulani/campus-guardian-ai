@@ -1,23 +1,35 @@
-from fastapi import FastAPI, UploadFile, File, Form
-from typing import Optional
+from fastapi import FastAPI
 
-from incident_analyzer import analyze_incident
-from ticket_generator import generate_ticket
+from frontend_api import router as incident_router
+from routing_api import router as navigation_router
 
-app = FastAPI()
+app = FastAPI(
+    title="Campus Guardian AI",
+    version="1.0.0",
+    description="AI Backend for Campus Guardian"
+)
 
 
-@app.post("/analyze")
-async def analyze(
-    text: Optional[str] = Form(None),
-    image: Optional[UploadFile] = File(None)
-):
-
-    incident = await analyze_incident(text, image)
-
-    ticket = generate_ticket(incident)
-
+# -----------------------------
+# Health Check
+# -----------------------------
+@app.get("/")
+async def home():
     return {
-        "incident": incident,
-        "ticket": ticket
+        "service": "Campus Guardian AI",
+        "status": "Running"
     }
+
+
+@app.get("/health")
+async def health():
+    return {
+        "status": "healthy"
+    }
+
+
+# -----------------------------
+# Register APIs
+# -----------------------------
+app.include_router(incident_router)
+app.include_router(navigation_router)
