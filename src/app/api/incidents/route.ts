@@ -1,56 +1,37 @@
 import { NextResponse } from "next/server";
-import { MOCK_INCIDENTS } from "@/lib/mock-data";
 
-import type { Incident } from "@/lib/types";
-
-// Simulated database (in-memory) for development
-let incidentsDB = [...MOCK_INCIDENTS];
-
-export async function GET() {
-  // In a real app, this would be: await db.incidents.findMany({ where: { status: 'approved' } })
-  const activeIncidents = incidentsDB.filter(
-    (inc) => inc.status === "approved" || inc.status === "pending"
-  );
-  
-  return NextResponse.json(activeIncidents);
-}
+const MIDDLEWARE_URL = process.env.MIDDLEWARE_URL || "http://172.25.44.70:8000/api/v1/incidents/report";
 
 export async function POST(request: Request) {
   try {
+    // 1. Parse JSON from frontend
     const body = await request.json();
-    
-    // Basic validation
-    if (!body.title || !body.description || !body.location) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
 
-    // In a real app, you would save to database here
-   const newIncident: Incident = {
-  id: `inc-${Date.now()}`,
-  title: body.title,
-  description: body.description,
-  category: body.category,
-  severity: "medium",
-  lat: 23.0796,
-  lng: 76.8475,
-  location: body.location,
-  timestamp: new Date(),
-  status: "pending",
-  reportedBy: "student_anon",
-};
+    // 2. Extract strictly title, description, and incident type
+    const title = body.title || "";
+    const description = body.description || "";
+    // Checks common frontend keys for category/type
+    const incidentType = body.category || body.incidentType || body.type || body.incident_type || "";
 
-    incidentsDB = [newIncident, ...incidentsDB];
+    // 3. Build FormData with ONLY these three fields
+    const formData = new FormData();
+    formData.append("title", String(title));
+    formData.append("description", String(description));
+    formData.append("incident_type", String(incidentType)); // Adjust field key if your middleware expects e.g. "incidentType" or "category"
 
-    return NextResponse.json(
-      { message: "Incident reported successfully", incident: newIncident },
-      { status: 201 }
-    );
+    // 4. Forward to middleware
+    const middlewareResponse = await fetch(MIDDLEWARE_URL, {
+      method: "POST",
+      body: formData, // Node/Next handles the multipart boundary header automatically
+    });
+
+    const data = await middlewareResponse.json();
+
+    return NextResponse.json(data, { status: middlewareResponse.status });
   } catch (error) {
+    console.error("[MIDDLEWARE_FORWARD_ERROR]", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Failed to communicate with safety middleware service" },
       { status: 500 }
     );
   }
