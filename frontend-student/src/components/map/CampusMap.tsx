@@ -1,78 +1,58 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import type { Incident, Route } from "@/lib/types";
-import { CAMPUS_CENTER } from "@/lib/mock-data";
-import IncidentMarker from "./IncidentMarker";
-import RoutePolyline from "./RoutePolyline";
+import { useState } from "react";
 
 interface CampusMapProps {
-  incidents: Incident[];
-  activeRoute: Route | null;
-  selectedIncident: Incident | null;
-  onIncidentClick: (incident: Incident) => void;
-}
-
-function MapController({ bounds }: { bounds: L.LatLngBoundsExpression }) {
-  const map = useMap();
-  useEffect(() => {
-    map.fitBounds(bounds, {
-      padding: [48, 48],
-      maxZoom: 15,
-    });
-  }, [bounds, map]);
-  return null;
+  /**
+   * Path (relative to the Next.js `public` folder) to the folium-generated
+   * HTML map file. Defaults to "/campusMap.html".
+   */
+  src?: string;
+  /** Height of the map container. Defaults to "100vh". */
+  height?: string | number;
+  /** Optional extra className for the wrapper div. */
+  className?: string;
 }
 
 export default function CampusMap({
-  incidents,
-  activeRoute,
-  selectedIncident,
-  onIncidentClick,
+  src = "/campusMap.html",
+  height = "100vh",
+  className = "",
 }: CampusMapProps) {
-  const campusBounds = useMemo(() => 
-    L.latLngBounds(
-      L.latLng(23.0700, 76.8360), // SouthWest
-      L.latLng(23.0910, 76.8620)  // NorthEast
-    ), 
-  []);
+  const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
 
   return (
-    <MapContainer
-      center={[CAMPUS_CENTER.lat, CAMPUS_CENTER.lng]}
-      zoom={14}
-      minZoom={13}
-      maxBounds={campusBounds}
-      maxBoundsViscosity={0.35}
-      style={{ height: "100%", width: "100%" }}
-      zoomControl={false}
-      className="z-0"
+    <div
+      className={`relative w-full ${className}`}
+      style={{ height }}
     >
-      {/* Clean light map tiles */}
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+      {loading && !failed && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10">
+          <span className="text-sm text-gray-500">Loading campus map…</span>
+        </div>
+      )}
+
+      {failed && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10">
+          <span className="text-sm text-red-500">
+            Could not load the campus map. Make sure{" "}
+            <code>{src}</code> exists in your <code>public</code> folder.
+          </span>
+        </div>
+      )}
+
+      <iframe
+        title="Campus Map"
+        src={src}
+        className="w-full h-full border-0"
+        loading="lazy"
+        onLoad={() => setLoading(false)}
+        onError={() => {
+          setLoading(false);
+          setFailed(true);
+        }}
       />
-
-      {/* Incident markers */}
-      {incidents
-        .filter((inc) => inc.status === "approved" || inc.status === "pending")
-        .map((incident) => (
-          <IncidentMarker
-            key={incident.id}
-            incident={incident}
-            isSelected={selectedIncident?.id === incident.id}
-            onClick={() => onIncidentClick(incident)}
-          />
-        ))}
-
-      {/* Active route polyline */}
-      {activeRoute && <RoutePolyline route={activeRoute} />}
-
-      <MapController bounds={campusBounds} />
-    </MapContainer>
+    </div>
   );
 }

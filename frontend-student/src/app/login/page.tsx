@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowLeft, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Loader2 } from "lucide-react";
 
 type Role = "student" | "admin";
 type AuthMode = "login" | "signup";
@@ -11,7 +11,56 @@ export default function LoginPage() {
   const [role, setRole] = useState<Role>("student");
   const [mode, setMode] = useState<AuthMode>("login");
 
+  // Form states - ID/Reg Number removed
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  // UI states
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
   const isSignup = mode === "signup";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    // Payload now only sends name, email, password, and role
+    const payload = {
+      name: isSignup ? name : undefined,
+      email,
+      password,
+      role, 
+    };
+
+    try {
+      const endpoint = isSignup ? "/api/auth/register" : "/api/auth/login"; 
+      
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || "Authentication failed");
+      }
+
+      setSuccessMsg(`Successfully ${isSignup ? "signed up" : "logged in"}!`);
+      // Optional: Redirect user here 
+      
+    } catch (error: any) {
+      setErrorMsg(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-10">
@@ -44,6 +93,7 @@ export default function LoginPage() {
               <button
                 key={item}
                 onClick={() => setRole(item)}
+                type="button"
                 className={`rounded-md px-3 py-2 text-sm font-semibold capitalize transition-colors ${
                   role === item
                     ? "bg-white text-indigo-700 shadow-sm"
@@ -60,6 +110,7 @@ export default function LoginPage() {
               <button
                 key={item}
                 onClick={() => setMode(item)}
+                type="button"
                 className={`text-sm font-semibold transition-colors ${
                   mode === item ? "text-slate-900" : "text-slate-400 hover:text-slate-700"
                 }`}
@@ -69,7 +120,11 @@ export default function LoginPage() {
             ))}
           </div>
 
-          <form className="mt-5 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+            
+            {errorMsg && <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">{errorMsg}</div>}
+            {successMsg && <div className="p-3 text-sm text-green-600 bg-green-50 rounded-md">{successMsg}</div>}
+
             {isSignup && (
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1.5">
@@ -77,6 +132,9 @@ export default function LoginPage() {
                 </label>
                 <input
                   type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
                   className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                 />
@@ -89,36 +147,13 @@ export default function LoginPage() {
               </label>
               <input
                 type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={role === "student" ? "student@vitbhopal.ac.in" : "admin@vitbhopal.ac.in"}
                 className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
               />
             </div>
-
-            {isSignup && role === "student" && (
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                  Registration number
-                </label>
-                <input
-                  type="text"
-                  placeholder="22BCE0000"
-                  className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                />
-              </div>
-            )}
-
-            {isSignup && role === "admin" && (
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                  Staff ID
-                </label>
-                <input
-                  type="text"
-                  placeholder="SEC-1024"
-                  className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                />
-              </div>
-            )}
 
             <div>
               <label className="block text-xs font-semibold text-slate-600 mb-1.5">
@@ -126,15 +161,20 @@ export default function LoginPage() {
               </label>
               <input
                 type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
                 className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
               />
             </div>
 
             <button
-              type="button"
-              className="w-full rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+              type="submit"
+              disabled={isLoading}
+              className="w-full flex justify-center items-center gap-2 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             >
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
               {isSignup ? "Create account" : "Login"} as {role}
             </button>
           </form>
