@@ -1,0 +1,360 @@
+{
+  "E01": {
+    "from": "MainGate",
+    "to": "LC",
+    "weight_m": 636,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E02": {
+    "from": "LC",
+    "to": "AR",
+    "weight_m": 76,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E03": {
+    "from": "AR",
+    "to": "Junction_AB1_UB",
+    "weight_m": 84,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E04": {
+    "from": "Junction_AB1_UB",
+    "to": "AB01",
+    "weight_m": 36,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E05": {
+    "from": "Junction_AB1_UB",
+    "to": "UnderBelly",
+    "weight_m": 36,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E06": {
+    "from": "UnderBelly",
+    "to": "MayuriCafe",
+    "weight_m": 40,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E07": {
+    "from": "Junction_AB1_UB",
+    "to": "MPH",
+    "weight_m": 195,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E08": {
+    "from": "MPH",
+    "to": "Junction_Secondary_Gate_MPH",
+    "weight_m": 44,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E09": {
+    "from": "Junction_Secondary_Gate_MPH",
+    "to": "MorepenClinic",
+    "weight_m": 25,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E10": {
+    "from": "Junction_Secondary_Gate_MPH",
+    "to": "SecondaryGate",
+    "weight_m": 44,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E11": {
+    "from": "SecondaryGate",
+    "to": "SurveillanceBlock",
+    "weight_m": 35,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E12": {
+    "from": "SurveillanceBlock",
+    "to": "ParcelArea",
+    "weight_m": 66,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E13": {
+    "from": "ParcelArea",
+    "to": "Junction_Bus_OpenAud",
+    "weight_m": 89,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E14": {
+    "from": "Junction_Bus_OpenAud",
+    "to": "BusParking",
+    "weight_m": 45,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E15": {
+    "from": "Junction_Bus_OpenAud",
+    "to": "OpenAuditorium",
+    "weight_m": 45,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },"E16": {
+  "from": "OpenAuditorium",
+  "to": "ChancellorRes",
+  "weight_m": 50,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  "E17": {
+  "from": "ChancellorRes",
+  "to": "Shed_Plus5",
+  "weight_m": 20,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+"E43": {
+  "from": "GH2_Shed",
+  "to": "GH2_Entrance",
+  "weight_m": 25,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E18": {
+  "from": "Shed_Plus5",
+  "to": "Shed_Minus1",
+  "weight_m": 45,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E20": {
+  "from": "Shed_Minus1",
+  "to": "GH1_Shed",
+  "weight_m": 35,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E21": {
+  "from": "GH1_Shed",
+  "to": "GH1_Entrance",
+  "weight_m": 35,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E23": {
+  "from": "GH1_Shed",
+  "to": "Shed_Break",
+  "weight_m": 70,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E24": {
+  "from": "Shed_Break",
+  "to": "GH2_Shed",
+  "weight_m": 55,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E27": {
+  "from": "GH2_Shed",
+  "to": "Shed_AB2",
+  "weight_m": 80,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E28": {
+  "from": "Shed_AB2",
+  "to": "Shed_B1",
+  "weight_m": 40,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E29": {
+  "from": "Shed_B1",
+  "to": "Shed3",
+  "weight_m": 130,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+
+"E30": {
+  "from": "Shed3",
+  "to": "AB02",
+  "weight_m": 180,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+},
+  
+  "E19": {
+  "from": "GH1_Entrance",
+  "to": "GH1",
+  "weight_m": 55, 
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  
+  "E22": {
+  "from": "GH2_Entrance",
+  "to": "GH2",
+  "weight_m": 60,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  
+  "E25": {
+  "from": "AB02",
+  "to": "SpecialBlock",
+  "weight_m": 220,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  "E26": {
+  "from": "SpecialBlock",
+  "to": "Junction_BH1_BH2",
+  "weight_m": 260,
+  "accessible": true,
+  "blocked": false,
+  "reason": null
+  },
+  
+  
+  "E31": {
+    "from": "Junction_BH1_BH2",
+    "to": "BH1",
+    "weight_m": 124,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E32": {
+    "from": "Junction_BH1_BH2",
+    "to": "BH2",
+    "weight_m": 124,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E33": {
+    "from": "BH2",
+    "to": "BH3",
+    "weight_m": 86,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E34": {
+    "from": "BH3",
+    "to": "BH5",
+    "weight_m": 70,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E35": {
+    "from": "BH3",
+    "to": "CentralHostelOffice",
+    "weight_m": 43,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E36": {
+    "from": "BH5",
+    "to": "BH4",
+    "weight_m": 64,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E37": {
+    "from": "BH4",
+    "to": "BH8",
+    "weight_m": 59,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E38": {
+    "from": "BH2",
+    "to": "BH6",
+    "weight_m": 69,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E39": {
+    "from": "BH6",
+    "to": "BH7",
+    "weight_m": 66,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E40": {
+    "from": "BH7",
+    "to": "BH8",
+    "weight_m": 89,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E41": {
+    "from": "BH1",
+    "to": "MayuriMess",
+    "weight_m": 184,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  },
+  "E42": {
+    "from": "BH7",
+    "to": "SafalMess",
+    "weight_m": 47,
+    "accessible": true,
+    "blocked": false,
+    "reason": null
+  }
+  
+}

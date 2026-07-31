@@ -1,5 +1,5 @@
-
 import json
+import os
 from math import radians, sin, cos, sqrt, atan2
 from node import Nodes
 
@@ -47,9 +47,18 @@ def nearest_nodes(nodes, k=7):
 
     return graph
 
-nodes_data = Nodes()
-print(type(nodes_data))
-nearest = nearest_nodes(nodes_data, k=10)
+if __name__ == "__main__":
+    nodes_data = Nodes()
+    print(type(nodes_data))
 
-with open("nearest_nodes_v1.json", "w") as f:
-    json.dump(nearest, f, indent=4)
+    nearest = nearest_nodes(nodes_data, k=10)
+
+    output_path = os.path.join(
+        os.path.dirname(__file__),
+        "..",
+        "data",
+        "nearest_nodes.json"
+    )
+
+    with open(output_path, "w") as f:
+        json.dump(nearest, f, indent=4)

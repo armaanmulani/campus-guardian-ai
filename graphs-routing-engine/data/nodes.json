@@ -1,0 +1,308 @@
+{
+  "MainGate": {
+    "id": "MainGate",
+    "name": "Main Gate",
+    "lat": 23.08437180333786,
+    "lng": 76.84958255896457,
+    "type": "gate"
+  },
+  "Shed_Plus5": {
+  "id": "Shed_Plus5",
+  "name": "Shed +5",
+  "lat": 23.0748806,
+  "lng": 76.8515306,
+  "type": "road"
+},
+
+"Shed_Minus1": {
+  "id": "Shed_Minus1",
+  "name": "Shed -1",
+  "lat": 23.0749889,
+  "lng": 76.8519167,
+  "type": "road"
+},
+
+"Shed_Break": {
+  "id": "Shed_Break",
+  "name": "Shed Break",
+  "lat": 23.0747444,
+  "lng": 76.8532917,
+  "type": "road"
+},
+
+"Shed_AB2": {
+  "id": "Shed_AB2",
+  "name": "Shed AB2",
+  "lat": 23.0746722,
+  "lng": 76.8549722,
+  "type": "road"
+},
+
+"Shed_B1": {
+  "id": "Shed_B1",
+  "name": "Shed B1",
+  "lat": 23.0748250,
+  "lng": 76.8553444,
+  "type": "road"
+},
+  
+  "LC": {
+    "id": "LC",
+    "name": "Lab Complex",
+    "lat": 23.07866105006784,
+    "lng": 76.85000128364705,
+    "type": "academic"
+  },
+  "AR": {
+    "id": "AR",
+    "name": "Architecture Block",
+    "lat": 23.07803435724222,
+    "lng": 76.85029779571637,
+    "type": "academic"
+  },
+  "Junction_AB1_UB": {
+    "id": "Junction_AB1_UB",
+    "name": "Junction AB1-UB",
+    "lat": 23.0776215,
+    "lng": 76.850988,
+    "type": "junction"
+  },
+  "AB01": {
+    "id": "AB01",
+    "name": "Academic Block 1",
+    "lat": 23.07773376380027,
+    "lng": 76.85132029527581,
+    "type": "academic"
+  },
+  "UnderBelly": {
+    "id": "UnderBelly",
+    "name": "UnderBelly",
+    "lat": 23.07751030656562,
+    "lng": 76.85065682141199,
+    "type": "landmark"
+  },
+  "MayuriCafe": {
+    "id": "MayuriCafe",
+    "name": "Mayuri Cafeteria",
+    "lat": 23.07715672051332,
+    "lng": 76.85070273060833,
+    "type": "dining"
+  },
+  "MPH": {
+    "id": "MPH",
+    "name": "Multipurpose Hall",
+    "lat": 23.07633177386586,
+    "lng": 76.84969427997063,
+    "type": "event"
+  },
+  "Junction_Secondary_Gate_MPH": {
+    "id": "Junction_Secondary_Gate_MPH",
+    "name": "Junction Secondary Gate-MPH",
+    "lat": 23.075939,
+    "lng": 76.8497355,
+    "type": "junction"
+  },
+  "MorepenClinic": {
+    "id": "MorepenClinic",
+    "name": "Morepen Clinic",
+    "lat": 23.07598699352894,
+    "lng": 76.84997719491298,
+    "type": "medical"
+  },
+  "SecondaryGate": {
+    "id": "SecondaryGate",
+    "name": "Secondary Gate",
+    "lat": 23.07554760432994,
+    "lng": 76.84977720682981,
+    "type": "gate"
+  },
+  "SurveillanceBlock": {
+    "id": "SurveillanceBlock",
+    "name": "Surveillance Block",
+    "lat": 23.0753340976069,
+    "lng": 76.85002599697435,
+    "type": "admin"
+  },
+  "ParcelArea": {
+    "id": "ParcelArea",
+    "name": "Parcel Area",
+    "lat": 23.07474564051778,
+    "lng": 76.85008870542778,
+    "type": "utility"
+  },
+  "Junction_Bus_OpenAud": {
+    "id": "Junction_Bus_OpenAud",
+    "name": "Junction Bus-OpenAud",
+    "lat": 23.074338,
+    "lng": 76.850832,
+    "type": "junction"
+  },
+  "BusParking": {
+    "id": "BusParking",
+    "name": "Bus Parking",
+    "lat": 23.07440732700121,
+    "lng": 76.8503953438612,
+    "type": "utility"
+  },
+  "OpenAuditorium": {
+    "id": "OpenAuditorium",
+    "name": "Open Auditorium",
+    "lat": 23.07426971867602,
+    "lng": 76.85126934616248,
+    "type": "event"
+  },
+  "ChancellorRes": {
+    "id": "ChancellorRes",
+    "name": "Chancellor's Residence",
+    "lat": 23.0749285068796,
+    "lng": 76.85131216893573,
+    "type": "admin"
+  },
+  "GH1": {
+    "id": "GH1",
+    "name": "GH Block 1",
+    "lat": 23.07535387290121,
+    "lng": 76.85246235041245,
+    "type": "hostel"
+  },
+  "GH2": {
+    "id": "GH2",
+    "name": "GH Block 2",
+    "lat": 23.07554657742942,
+    "lng": 76.85384504731455,
+    "type": "hostel"
+  },
+  "GH1_Entrance":{
+    "id":"GH1_Entrance",
+    "name": "GH1 Entrance",
+    "lat":23.0748917,
+    "lng": 76.8525944,
+    "type": "entrance"
+  },
+  "GH2_Entrance":{
+    "id":"GH2_Entrance",
+    "name": "GH2 Entrance",
+    "lat": 23.0750000,
+    "lng": 76.8540667,
+    "type": "entrance"
+  },
+  "GH1_Shed":{
+  "id": "GH1_Shed",
+  "name": "GH1 Shed",
+  "lat": 23.0747694,
+  "lng": 76.8522861,
+  "type": "road"
+  },
+  "Shed3":{
+  "id": "Shed3",
+  "name": "Shed 3",
+  "lat": 23.0749222,
+  "lng": 76.8565667,
+  "type": "road"
+  },
+  "GH2_Shed":{
+  "id": "GH2_Shed",
+  "name": "GH2 Shed",
+  "lat": 23.0748917,
+  "lng": 76.8538972,
+  "type": "road"
+  },
+  "AB02": {
+    "id": "AB02",
+    "name": "Academic Block 2",
+    "lat": 23.07371014273798,
+    "lng": 76.8559837324872,
+    "type": "academic"
+  },
+  "SpecialBlock": {
+    "id": "SpecialBlock",
+    "name": "Special Block",
+    "lat": 23.07256768836572,
+    "lng": 76.85776425877727,
+    "type": "hostel"
+  },
+  "Junction_BH1_BH2": {
+    "id": "Junction_BH1_BH2",
+    "name": "Junction BH1-BH2",
+    "lat": 23.0740925,
+    "lng": 76.8600585,
+    "type": "junction"
+  },
+  "BH1": {
+    "id": "BH1",
+    "name": "BH Block 1",
+    "lat": 23.07520652873168,
+    "lng": 76.85993701475878,
+    "type": "hostel"
+  },
+  "BH2": {
+    "id": "BH2",
+    "name": "BH Block 2",
+    "lat": 23.0729790971609,
+    "lng": 76.86018061253326,
+    "type": "hostel"
+  },
+  "BH3": {
+    "id": "BH3",
+    "name": "BH Block 3",
+    "lat": 23.07335699597114,
+    "lng": 76.85945144266478,
+    "type": "hostel"
+  },
+  "BH4": {
+    "id": "BH4",
+    "name": "BH Block 4",
+    "lat": 23.07302217789222,
+    "lng": 76.85873344791915,
+    "type": "hostel"
+  },
+  "BH5": {
+    "id": "BH5",
+    "name": "BH Block 5",
+    "lat": 23.07359347569372,
+    "lng": 76.85881394086834,
+    "type": "hostel"
+  },
+  "BH6": {
+    "id": "BH6",
+    "name": "BH Block 6",
+    "lat": 23.07237458159758,
+    "lng": 76.8600190606195,
+    "type": "hostel"
+  },
+  "BH7": {
+    "id": "BH7",
+    "name": "BH Block 7",
+    "lat": 23.07281673198376,
+    "lng": 76.85958517357138,
+    "type": "hostel"
+  },
+  "BH8": {
+    "id": "BH8",
+    "name": "BH Block 8",
+    "lat": 23.07249406588741,
+    "lng": 76.85878948912135,
+    "type": "hostel"
+  },
+  "CentralHostelOffice": {
+    "id": "CentralHostelOffice",
+    "name": "Central Hostel Office",
+    "lat": 23.07373414786334,
+    "lng": 76.85935341672754,
+    "type": "admin"
+  },
+  "MayuriMess": {
+    "id": "MayuriMess",
+    "name": "Mayuri Mess",
+    "lat": 23.07356266066645,
+    "lng": 76.8601762868573,
+    "type": "dining"
+  },
+  "SafalMess": {
+    "id": "SafalMess",
+    "name": "Safal Mess",
+    "lat": 23.0723920284192,
+    "lng": 76.85958088637626,
+    "type": "dining"
+  }
+}
