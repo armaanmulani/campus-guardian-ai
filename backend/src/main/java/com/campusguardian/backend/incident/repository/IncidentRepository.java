@@ -1,0 +1,12 @@
+package com.campusguardian.backend.incident.repository;
+
+import com.campusguardian.backend.incident.entity.Incident;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface IncidentRepository extends JpaRepository<Incident, String> {
+    List<Incident> findByUserId(String userId);
+}
