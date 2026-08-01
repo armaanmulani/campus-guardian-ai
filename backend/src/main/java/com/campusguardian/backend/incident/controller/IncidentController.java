@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/incidents")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000/**")
 public class IncidentController {
 
     private final IncidentService incidentService;
