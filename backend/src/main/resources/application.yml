@@ -3,14 +3,14 @@ spring:
     name: campus-guardian-backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/campus_guardian_db
+    url: jdbc:postgresql://localhost:5432/campus_guardian
     username: postgres
-    password: Armaan@2006
+    password: postgres_password
     driver-class-name: org.postgresql.Driver
 
     jpa:
       hibernate:
-        ddl-auto: update
+        ddl-auto: validate
 
       show-sql: true
 
