@@ -3,9 +3,9 @@ spring:
     name: campus-guardian-backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/campus_guardian
-    username: postgres
-    password: postgres_password
+    url: jdbc:${SPRING_DATABASE_URL}
+    username: ${SPRING_DATABASE_USERNAME}
+    password: ${SPRING_DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
     jpa:
